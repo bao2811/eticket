@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-CampwebApplication<campweb>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "campweb.CampwebApplication",
+      "projectName": "campweb",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
