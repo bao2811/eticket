@@ -8,9 +8,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.List;
 import java.util.UUID;
+import lombok.Data;
 import org.hibernate.annotations.UuidGenerator;
 
 @Entity
+@Data
 @Table(name = "orders")
 public class OrderEntity {
     
@@ -21,9 +23,9 @@ public class OrderEntity {
     private String customerName;
     private String customerEmail;
     private Long orderTime;
-
     private Long totalAmount;
     private String status;
+    private String paymentUrl;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<TicketEntity> tickets;

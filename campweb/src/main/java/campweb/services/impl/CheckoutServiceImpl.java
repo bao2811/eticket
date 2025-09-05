@@ -6,6 +6,9 @@ import campweb.payload.CheckoutResponse;
 import campweb.services.CheckoutService;
 import jakarta.servlet.http.HttpServletRequest;
 import campweb.entities.OrderEntity;
+import org.springframework.stereotype.Service;
+
+@Service
 
 public class CheckoutServiceImpl implements CheckoutService {
     private final HttpServletRequest request;
@@ -17,7 +20,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
     @Override
     public CheckoutResponse getCheckout(OrderEntity orderEntity) {
-        CheckoutResponse response = new CheckoutResponse();
+        CheckoutResponse response = new CheckoutResponse(orderEntity.getPaymentUrl());
         return response;
     }
 }

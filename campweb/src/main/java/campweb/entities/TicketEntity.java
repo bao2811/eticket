@@ -2,10 +2,12 @@ package campweb.entities;
 
 import jakarta.persistence.*;
 import java.util.UUID;
+import lombok.Data;
 import org.hibernate.annotations.UuidGenerator;
 
 @Entity
 @Table(name = "tickets")
+@Data
 public class TicketEntity {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -14,9 +16,11 @@ public class TicketEntity {
 
     private String name;
     private String email;
-    private Long amount;
-
-    private UUID zoneEntity;
+    private UUID zoneId;
+    private String orderId;
+    private String seatNumber;
+    private UUID eventId;
+    private UUID seatId;
 
     @ManyToOne
     @JoinColumn(name = "event_id")
@@ -44,22 +48,6 @@ public class TicketEntity {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Long getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Long amount) {
-        this.amount = amount;
-    }
-
-    public UUID getZoneEntity() {
-        return zoneEntity;
-    }
-
-    public void setZoneEntity(UUID zoneEntity) {
-        this.zoneEntity = zoneEntity;
     }
 
     public OrderEntity getOrder() {

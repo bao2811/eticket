@@ -1,24 +1,16 @@
 package campweb.model;
-import java.util.UUID;
+import java.util.List;
+import java.util.Map;
 
-public class SeatSelection {
+public abstract class SeatSelection {
 
-    private UUID zoneId;
-    private int quantity;
+    private Map<String, List<Integer>> seats;
 
-    public UUID getZoneId() {
-        return zoneId;
+    public Map<String, List<Integer>> getSeats() {
+        return seats;
     }
 
-    public void setZoneId(UUID zoneId) {
-        this.zoneId = zoneId;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setSeats(Map<String, List<Integer>> seats) {
+        this.seats = seats;
     }
 }

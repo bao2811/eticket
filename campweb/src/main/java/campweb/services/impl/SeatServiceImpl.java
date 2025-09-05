@@ -5,7 +5,6 @@ import campweb.services.SeatService;
 import campweb.entities.SeatEntity;
 import campweb.repositories.SeatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import java.util.UUID;
 import java.util.List;
 
 @Service

@@ -1,5 +1,8 @@
 package campweb.payload;
 
+import lombok.Data;
+
+@Data
 public class EventCreateRequest {
     private String name;
     private String description;

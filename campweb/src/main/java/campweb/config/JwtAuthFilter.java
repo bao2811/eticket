@@ -28,7 +28,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String uri = request.getRequestURI();
 
         // ⚠️ BỎ QUA những URL PUBLIC (permitAll trong SecurityConfig)
-        if (uri.startsWith("/auth") || uri.startsWith("/events")) {
+        if (uri.startsWith("/auth") || uri.startsWith("/events") || uri.startsWith("/checkout")) {
             filterChain.doFilter(request, response);
             return;
         }

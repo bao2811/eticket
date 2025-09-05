@@ -1,20 +1,21 @@
 package campweb.services.impl;
 
-import java.util.List;
-import java.util.UUID;
-import java.util.ArrayList;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
+import campweb.entities.OrderEntity;
 import campweb.entities.TicketEntity;
 import campweb.model.SeatSelection;
-import campweb.repositories.TicketRepository;
-
-import campweb.repositories.OrderRepository;
-import campweb.services.OrderService;
-import campweb.entities.OrderEntity;
 import campweb.payload.OrderRequest;
+import campweb.repositories.OrderRepository;
+import campweb.repositories.TicketRepository;
+import campweb.services.OrderService;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
+@Service
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
@@ -30,6 +31,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderEntity createOrder(OrderRequest orderRequest) {
+
+        Map<String, List<Integer>> seats = orderRequest.getSeats();
+
+        // Ví dụ duyệt qua từng hàng ghế, và lưu các
+
         Long totalAmount = 0L;
 
         OrderEntity orderEntity = new OrderEntity();
@@ -37,23 +43,28 @@ public class OrderServiceImpl implements OrderService {
         orderEntity.setCustomerEmail(orderRequest.getCustomerEmail());
         orderEntity.setTotalAmount(totalAmount);
         orderEntity = orderRepository.save(orderEntity);
-
-        List<SeatSelection> seatSelections = orderRequest.getSeatSelections();
-
+        
         List<TicketEntity> newTickets = new ArrayList<>();
 
-        for (SeatSelection seatSelection : seatSelections) {
-            TicketEntity ticketEntity = new TicketEntity();
-            ticketEntity.setName(orderEntity.getCustomerName());
-            ticketEntity.setEmail(orderEntity.getCustomerEmail());
-            ticketEntity.setOrder(orderEntity);
-            ticketEntity.setZoneEntity(seatSelection.getZoneId());
-            newTickets.add(ticketEntity);
+        for (Map.Entry<String, List<Integer>> entry : seats.entrySet()) {
+            String row = entry.getKey();             // "A", "B", "C"
+            List<Integer> numbers = entry.getValue();// [1,2,3,...]
+            
+            // lưu hàng và só ghế vào ticketEntity và tính số tiền
+
+            for (Integer number : numbers) {
+                TicketEntity ticketEntity = new TicketEntity();
+                ticketEntity.setName(orderEntity.getCustomerName());
+                ticketEntity.setEmail(orderEntity.getCustomerEmail());
+                ticketEntity.setOrder(orderEntity);
+                newTickets.add(ticketEntity);
+            }
         }
 
-        ticketRepository.saveAll(newTickets);
+        // ticketRepository.saveAll(newTickets);
 
         return orderEntity;
+        // trả về đối tượng orderEntity và danh sách ticketEntity...
     }
 }
  

@@ -1,12 +1,17 @@
 package campweb.payload;
 
-import campweb.model.SeatSelection;
 import java.util.List;
+import java.util.Map;
+import lombok.Data;
 
+@Data
 public class OrderRequest {
     private String customerName;
     private String customerEmail;
-    private List<SeatSelection> seatSelections;
+    private Map<String, List<Integer>> seats;
+    private long totalAmount;
+    private long orderTime;
+    private String status;
 
     public String getCustomerName() {
         return customerName;
@@ -22,14 +27,5 @@ public class OrderRequest {
     public void setCustomerEmail(String customerEmail) {
         this.customerEmail = customerEmail;
     }   
-
-    public List<SeatSelection> getSeatSelections() {
-        return seatSelections;
-    }
-
-    public void setSeatSelections(List<SeatSelection> seatSelections) {
-        this.seatSelections = seatSelections;
-    }
-
 
 }

@@ -28,7 +28,7 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
             .cors(cors -> cors.configurationSource(corsConfiguration()))
             .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login", "/auth/register", "/events", "/events/**", "/zones", "/zones/**", "/seats", "/seats/**").permitAll()
+                        .requestMatchers("/auth/login", "/auth/register", "/events", "/events/**", "/zones", "/zones/**", "/seats", "/seats/**", "/checkout", "/checkout/**", "/checkout/onepay").permitAll()
                         .anyRequest().authenticated()
                 ).sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore((jakarta.servlet.Filter) jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
