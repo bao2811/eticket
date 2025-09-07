@@ -12,7 +12,7 @@ export default function Home() {
       <Container>
         <div className="px-5">
           <Account />
-          <Basket />
+          {/* <Basket /> */}
           <Slidebar />
           <Header />
           <Footer />

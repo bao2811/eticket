@@ -16,45 +16,14 @@ public class TicketEntity {
 
     private String name;
     private String email;
-    private UUID zoneId;
-    private String orderId;
+
+    private UUID zone_id;   // nếu có quan hệ ZoneEntity thì nên đổi sang ManyToOne
+    private UUID event_id;  // nếu có EventEntity thì nên đổi sang ManyToOne
     private String seatNumber;
-    private UUID eventId;
     private UUID seatId;
 
+    // 👇 Đây là quan hệ với OrderEntity
     @ManyToOne
-    @JoinColumn(name = "event_id")
+    @JoinColumn(name = "order_id", referencedColumnName = "id") // FK trong bảng tickets
     private OrderEntity order;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public OrderEntity getOrder() {
-        return order;
-    }
-
-    public void setOrder(OrderEntity order) {
-        this.order = order;
-    }
 }

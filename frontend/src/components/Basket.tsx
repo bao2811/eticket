@@ -1,16 +1,26 @@
 "use client";
 
-export default async function Basket() {
-  const token = localStorage.getItem("token");
+import { useEffect, useState } from "react";
 
-  const res = await fetch("http://localhost:8080/auth/basket", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  const data = await res.json();
+export default function Basket() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    fetch("http://localhost:8080/auth/basket", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setData(data))
+      .catch((err) => console.error("Error fetching basket:", err));
+  }, []);
+
   return (
     <div>
       <h1>Basket Component</h1>
