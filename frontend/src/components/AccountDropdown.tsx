@@ -78,7 +78,7 @@ export default function AccountDropdown({
         )}
 
         {!account && (
-          <div className="absolute right-0 mt-2 w-64 bg-white rounded shadow-lg border p-4 space-y-2 z-50">
+          <div className="absolute right-0 mt-2 w-50 h-auto bg-white rounded shadow-lg border p-4 space-y-1 z-1">
             <button
               onClick={() => router.push("/login")}
               className="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded w-full"

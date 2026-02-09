@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class OrderRequest {
+
     private String customerName;
     private String customerEmail;
     private Map<String, List<Integer>> seats;
@@ -16,6 +17,7 @@ public class OrderRequest {
     public String getCustomerName() {
         return customerName;
     }
+
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
@@ -23,9 +25,13 @@ public class OrderRequest {
     public String getCustomerEmail() {
         return customerEmail;
     }
-    
+
     public void setCustomerEmail(String customerEmail) {
         this.customerEmail = customerEmail;
-    }   
+    }
+
+    public void setSeats(Map<String, List<Integer>> seats) {
+        this.seats = seats;
+    }
 
 }

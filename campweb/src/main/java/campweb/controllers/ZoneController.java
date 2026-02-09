@@ -31,4 +31,8 @@ public class ZoneController {
         return ResponseEntity.ok(zones);
     }
 
+    @GetMapping("/")
+    public ResponseEntity<String> testAPI() {
+        return ResponseEntity.ok("API is working");
+    }
 }

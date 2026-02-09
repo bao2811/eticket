@@ -1,0 +1,108 @@
+eticket-microservices/
+│
+├── 📁 infrastructure/          # Cấu hình hạ tầng
+│   ├── nginx/                  # Load Balancer + Rate Limit
+│   │   ├── conf.d/
+│   │   └── ssl/
+│   ├── prometheus/             # Metrics collection
+│   ├── grafana/                # Dashboards
+│   ├── elasticsearch/          # Search + Read Model
+│   ├── logstash/               # Log pipeline
+│   ├── kibana/                 # Log visualization
+│   ├── rabbitmq/               # Message Queue
+│   └── redis/                  # Distributed Cache
+│
+├── 📁 services/                # Microservices
+│   │
+│   ├── 📦 common/              # Shared Library
+│   │   └── src/main/java/com/eticket/common/
+│   │       ├── dto/            # ApiResponse, PageResponse
+│   │       ├── event/          # DomainEvent base
+│   │       ├── exception/      # BaseException
+│   │       └── util/           # JwtUtil, etc.
+│   │
+│   ├── 📦 api-gateway/         # API Gateway
+│   │   └── src/main/java/com/eticket/gateway/
+│   │       ├── config/         # GatewayConfig, SecurityConfig
+│   │       ├── filter/         # JwtAuthFilter, RateLimitFilter
+│   │       └── exception/
+│   │
+│   ├── 📦 user-service/        # User/Auth Service (CQRS)
+│   │   └── src/main/java/com/eticket/user/
+│   │       ├── command/        # Write operations
+│   │       │   ├── controller/
+│   │       │   ├── service/
+│   │       │   ├── handler/
+│   │       │   └── aggregate/
+│   │       ├── query/          # Read operations
+│   │       │   ├── controller/
+│   │       │   ├── service/
+│   │       │   └── projection/
+│   │       ├── domain/
+│   │       │   ├── entity/     # JPA Entities (MySQL)
+│   │       │   ├── event/      # Domain Events
+│   │       │   └── repository/
+│   │       ├── infrastructure/
+│   │       │   ├── config/
+│   │       │   ├── messaging/  # RabbitMQ Publisher/Consumer
+│   │       │   └── persistence/
+│   │       └── api/dto/
+│   │
+│   ├── 📦 event-service/       # Event Management (CQRS)
+│   │   └── src/main/java/com/eticket/event/
+│   │       ├── command/
+│   │       │   ├── controller/
+│   │       │   ├── service/
+│   │       │   ├── handler/
+│   │       │   └── command/    # CreateEventCommand, etc.
+│   │       ├── query/
+│   │       │   ├── controller/
+│   │       │   ├── service/
+│   │       │   └── projection/
+│   │       ├── domain/
+│   │       │   ├── entity/     # EventEntity, ZoneEntity, SeatEntity
+│   │       │   ├── event/      # EventCreatedEvent, etc.
+│   │       │   └── repository/
+│   │       └── infrastructure/
+│   │           ├── config/
+│   │           ├── elasticsearch/  # EventDocument, SearchRepo
+│   │           └── messaging/
+│   │
+│   ├── 📦 order-service/       # Order + Ticket (CQRS + Saga)
+│   │   └── src/main/java/com/eticket/order/
+│   │       ├── command/
+│   │       │   ├── controller/
+│   │       │   ├── service/
+│   │       │   ├── handler/
+│   │       │   └── saga/       # OrderSaga (distributed transaction)
+│   │       ├── query/
+│   │       ├── domain/
+│   │       │   ├── entity/     # OrderEntity, TicketEntity
+│   │       │   ├── event/
+│   │       │   └── repository/
+│   │       └── infrastructure/
+│   │           ├── config/
+│   │           ├── cache/      # Redis cache service
+│   │           ├── elasticsearch/
+│   │           └── messaging/
+│   │
+│   ├── 📦 payment-service/     # Payment Processing
+│   │   └── src/main/java/com/eticket/payment/
+│   │       ├── controller/     # PaymentController, WebhookController
+│   │       ├── service/        # OnepayService, VnpayService
+│   │       ├── domain/
+│   │       │   ├── entity/
+│   │       │   └── event/
+│   │       └── infrastructure/
+│   │           └── messaging/
+│   │
+│   └── 📦 notification-service/ # Notification
+│       └── src/main/java/com/eticket/notification/
+│           ├── service/        # EmailService, SmsService
+│           ├── consumer/       # RabbitMQ consumers
+│           └── template/       # Email templates
+│
+└── 📁 scripts/                 # Utility scripts
+    ├── init-db.sh
+    ├── init-es-indices.sh
+    └── init-rabbitmq.sh

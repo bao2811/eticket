@@ -42,7 +42,7 @@ export default function LoginPage() {
 
   return (
     <div
-      className="p-4"
+      className="p-4 h-full flex flex-col justify-center"
       style={{
         display: "flex",
         flexDirection: "column",

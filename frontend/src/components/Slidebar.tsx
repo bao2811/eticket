@@ -1,5 +1,6 @@
 "use client";
 import { Carousel } from "react-responsive-carousel";
+// @ts-ignore
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export const Slidebar = () => {
@@ -12,7 +13,7 @@ export const Slidebar = () => {
         showArrows={true}
         showThumbs={false}
         showStatus={false}
-        className="mb-5"
+        className="mb-5 h-auto rounded-lg overflow-hidden block w-full"
       >
         <div>
           <img

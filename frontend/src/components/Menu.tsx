@@ -55,29 +55,15 @@ export const Menu = () => {
   };
   return (
     <div>
-      <nav className="bg-gray-800 text-white p-4 max-w-screen-lg mx-auto px-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="text-lg font-bold px-5">My Application</div>
-          <ul className="flex space-x-4">
-            <li>
-              <a href="/" className="hover:underline">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="/about" className="hover:underline">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="/events" className="hover:underline">
-                Events
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <div className="text-xl font-semibold mb-4 px-20">Events</div>
+      <div className="text-xl font-semibold mb-4 text-black mt-8 container mx-auto">
+        Events a<br />
+        a<br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a
+        <br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a
+        <br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a
+        <br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a
+        <br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a
+        <br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a<br />a
+      </div>
       <div className="grid grid-cols-4 gap-4 container mx-auto mt-8">
         {eventList.map((event) => (
           <Link

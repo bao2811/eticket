@@ -1,0 +1,16 @@
+# - test:
+#     - url: "/zones/"
+#       method: "GET"
+#       expected_status: [200]
+- config:
+    - testset: "JSONPlaceholder Create Post"
+
+- test:
+    - name: "Create new post"
+    - url: "/posts"
+    - method: "POST"
+    - headers: { "Content-Type": "application/json" }
+    - body: '{"title": "Hello", "body": "This is a test", "userId": 1}'
+    - validators:
+        - compare:
+            { jsonpath_mini: "title", comparator: "eq", expected: "Hello" }
